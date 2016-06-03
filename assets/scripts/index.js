@@ -63,6 +63,26 @@
 		return value
 	}
 
+	function showNotification(title, artist, album, cover) {
+		if (!Notification || !document.hidden) {
+			return
+		}
+		if (Notification.permission !== 'granted') {
+			Notification.requestPermission()
+		} else {
+			var n = new Notification(
+				title,
+				{
+					body: 'by '+artist,
+					icon: cover
+				}
+			)
+			setTimeout(function(n){
+				return function(){ n.close() }
+			}(n), 3000)
+		}
+	}
+
 	function update() {
 		fetch(getRecentUrl(username)).then(function(response){
 			return response.json()
@@ -73,12 +93,14 @@
 			var track = data.recenttracks.track[0]
 			if (lastTrackId !== track.url) {
 				lastTrackId = track.url
-				show(
+				var params = [
 					track.name,
 					track.artist['#text'],
 					track.album['#text'],
 					getBySize(track.image, 'extralarge', '#text')
-				)
+				]
+				show.apply(show, params)
+				showNotification.apply(showNotification, params)
 			}
 
 			setTimeout(function(){
