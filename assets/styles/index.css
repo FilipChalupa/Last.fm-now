@@ -5,6 +5,7 @@
 	right: 0;
 	bottom: 0;
 	background: black;
+	font-family: Verdana, Geneva, sans-serif;
 }
 
 .track-item {
@@ -58,6 +59,7 @@
 }
 
 .track-cover {
+	margin: 0 auto;
 	width: 300px;
 	max-width: 100%;
 }
