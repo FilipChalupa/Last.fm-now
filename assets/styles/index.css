@@ -1,0 +1,106 @@
+.track {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: black;
+}
+
+.track-item {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	overflow: hidden;
+	color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: opacity 0.5s, visibility 0.5s;
+}
+
+.track-item.view-new,
+.track-item.view-old {
+	opacity: 0;
+	visibility: hidden;
+}
+
+.track-item.view-old {
+}
+
+.track-under,
+.track-cover {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.track-under {
+	position: absolute;
+	top: -30px;
+	left: -30px;
+	right: -30px;
+	bottom: -30px;
+	-webkit-filter: grayscale(100%) blur(1vw);
+	filter: grayscale(100%) blur(1vw);
+}
+
+.track-in {
+	position: relative;
+	display: inline-block;
+	padding: 15px;
+	max-width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+}
+
+.track-cover {
+	width: 300px;
+	max-width: 100%;
+}
+.track-cover:before {
+	display: block;
+	padding-top: 100%;
+	content: '';
+}
+
+.track-info {
+	text-shadow: 0 0 10px black;
+}
+
+.track-title {
+	margin-top: 0.25em;
+	font-size: 3em;
+}
+
+.track-artist {
+	font-size: 2em;
+	padding: 0.5em 0;
+}
+
+.track-album {
+}
+
+
+@media (min-width: 700px) {
+	.track-in {
+		flex-direction: row;
+	}
+
+	.track-cover {
+		margin-right: 20px;
+		float: left;
+	}
+
+	.track-info {
+		max-width: 500px;
+		min-width: 300px;
+	}
+
+	.track-title {
+		margin-top: -0.23em;
+	}
+}
