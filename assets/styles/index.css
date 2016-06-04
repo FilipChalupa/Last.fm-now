@@ -71,6 +71,7 @@ body {
 }
 
 .track-item.view-old {
+	transition-delay: 0.5s;
 }
 
 .track-under,
