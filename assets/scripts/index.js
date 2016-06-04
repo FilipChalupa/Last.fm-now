@@ -50,7 +50,7 @@
 	}
 
 	function getRecentUrl(username) {
-		return 'http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user='+username+'&limit=1&api_key=4bf2f3f683673b6f60730f65cf30cb28&format=json'
+		return 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user='+username+'&limit=1&api_key=4bf2f3f683673b6f60730f65cf30cb28&format=json'
 	}
 
 	function getBySize(data, size, attr) {
