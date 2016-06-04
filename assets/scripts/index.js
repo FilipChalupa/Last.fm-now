@@ -4,6 +4,8 @@
 		username = 'Ofecka_'
 	}
 
+	var loading = document.getElementById('loading')
+
 	var track = document.getElementById('track')
 	var trackPrevious
 	var trackCurrent = track.querySelector('.track-item')
@@ -29,6 +31,8 @@
 	function show(title, artist, album, cover) {
 		if (trackPrevious) {
 			trackPrevious.remove()
+		} else {
+			loading.classList.add('view-done')
 		}
 		trackPrevious = trackCurrent
 		trackCurrent = trackPrevious.cloneNode(true)
