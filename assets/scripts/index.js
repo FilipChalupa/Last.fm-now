@@ -96,7 +96,7 @@
 			}(n))
 			setTimeout(function(n){
 				return function(){ n.close() }
-			}(n), 3000)
+			}(n), 7000)
 		}
 	}
 
