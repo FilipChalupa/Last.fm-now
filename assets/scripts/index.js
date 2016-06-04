@@ -1,8 +1,15 @@
 (function(){
-	var username = window.location.hash.substr(1)
+	function getUsername() {
+		return username = window.location.hash.substr(1)
+	}
+
+
+	var username = getUsername()
 	if (!username) {
 		username = 'Ofecka_'
 	}
+	window.addEventListener('hashchange', getUsername);
+
 
 	var loading = document.getElementById('loading')
 
