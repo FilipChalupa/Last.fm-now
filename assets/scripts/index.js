@@ -77,6 +77,12 @@
 					icon: cover
 				}
 			)
+			n.addEventListener('click', function(n){
+				return function(){
+					window.focus()
+					n.close()
+				}
+			}(n))
 			setTimeout(function(n){
 				return function(){ n.close() }
 			}(n), 3000)
