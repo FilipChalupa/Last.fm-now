@@ -1,10 +1,13 @@
 body {
 	background: black;
+	color: white;
+	font-family: Verdana, Geneva, sans-serif;
 }
 
 .loading {
 	animation: loading-intro 4s 2s backwards;
 	transition: opacity 0.3s, visibility 0.3s;
+	pointer-events: none;
 }
 .loading.view-done {
 	opacity: 0;
@@ -47,7 +50,6 @@ body {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	font-family: Verdana, Geneva, sans-serif;
 }
 
 .track-item {
@@ -57,7 +59,6 @@ body {
 	right: 0;
 	bottom: 0;
 	overflow: hidden;
-	color: white;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -157,4 +158,54 @@ body {
 	.track-title {
 		margin-top: -0.23em;
 	}
+}
+
+
+.selector {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: black;
+	z-index: 10;
+	padding: 15px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	transition: opacity 0.5s, visibility 0.5s;
+}
+
+.selector.view-hidden {
+	visibility: hidden;
+	opacity: 0;
+}
+
+.selector-title {
+	font-size: 30px;
+}
+
+.selector-input {
+	display: block;
+	font-family: inherit;
+}
+
+.selector-submit {
+	margin-top: 10px;
+	background: none;
+	border: 2px solid;
+	border-radius: 3px;
+	color: inherit;
+	cursor: pointer;
+}
+
+.selector-loading {
+	opacity: 0.5;
+}
+
+.selector-about {
+	margin-top: 50px;
+	font-size: 80%;
 }

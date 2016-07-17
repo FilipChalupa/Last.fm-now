@@ -16,9 +16,23 @@
 
 <body>
 
-	<div class="loading" id="loading"></div>
+	<section id="selector" class="selector view-hidden">
+		<div class="selector-loading">
+			<div class="loading"></div>
+		</div>
+		<h1 class="selector-title">Last.fm now playing</h1>
+		<form id="selector-form">
+			<input id="selector-input" type="text" class="selector-input" placeholder="Username">
+			<button class="selector-submit">Submit</button>
+		</form>
+		<a class="selector-about" href="https://github.com/Onset/Last.fm-now" target="_blank">
+			About Last.fm now
+		</a>
+	</section>
 
-	<div class="track" id="track">
+	<section class="loading" id="loading"></section>
+
+	<section class="track" id="track">
 		<div class="track-item">
 			<div class="track-under"></div>
 			<div class="track-in">
@@ -30,7 +44,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 
 	<script src="assets/scripts/index.js" defer></script>
 </body>

@@ -1,14 +1,36 @@
 (function(){
+	var updateRunning = false
+
+	var selector = document.getElementById('selector')
+	var selectorForm = document.getElementById('selector-form')
+	var selectorInput = document.getElementById('selector-input')
+
+	selectorForm.addEventListener('submit', function(e){
+		e.preventDefault()
+		window.location.hash = selectorInput.value
+	})
+
+	function toggleSelector(show) {
+		selector.classList.toggle('view-hidden', !show)
+	}
+
+
 	function getUsername() {
-		return username = window.location.hash.substr(1)
+		username = window.location.hash.substr(1)
+		toggleSelector(!username)
+		if (!updateRunning && username) {
+			updateRunning = true
+			update()
+		}
+		return username
 	}
 
 
 	var username = getUsername()
-	if (!username) {
-		username = 'Ofecka_'
-	}
-	window.addEventListener('hashchange', getUsername);
+	window.addEventListener('hashchange', function(){
+		loading.classList.remove('view-done')
+		getUsername()
+	});
 
 
 	var loading = document.getElementById('loading')
@@ -36,10 +58,9 @@
 	}
 
 	function show(title, artist, album, cover) {
+		loading.classList.add('view-done')
 		if (trackPrevious) {
 			trackPrevious.remove()
-		} else {
-			loading.classList.add('view-done')
 		}
 		trackPrevious = trackCurrent
 		trackCurrent = trackPrevious.cloneNode(true)
@@ -132,7 +153,5 @@
 			}, 5000)
 		})
 	}
-
-	update()
 
 })()
