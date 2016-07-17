@@ -87,6 +87,7 @@ body {
 	left: -30px;
 	right: -30px;
 	bottom: -30px;
+	opacity: 0.85;
 	-webkit-filter: grayscale(100%) blur(1vw);
 	filter: grayscale(100%) blur(1vw);
 }
@@ -113,7 +114,7 @@ body {
 }
 
 .track-info {
-	text-shadow: 0 0 10px black;
+	text-shadow: 0 0 30px rgba(0,0,0,0.5);
 }
 
 .track-title {
