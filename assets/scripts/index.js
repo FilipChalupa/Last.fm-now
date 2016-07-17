@@ -52,9 +52,11 @@
 
 		track.appendChild(trackCurrent)
 
+		var backgroundUrl = cover ? 'url('+cover+')' : ''
+		trackCurrent.classList.toggle('view-nocover', !cover)
 		trackProps = getProps(trackCurrent)
-		trackProps.under.style.backgroundImage = 'url('+cover+')'
-		trackProps.cover.style.backgroundImage = trackProps.under.style.backgroundImage
+		trackProps.under.style.backgroundImage = backgroundUrl
+		trackProps.cover.style.backgroundImage = backgroundUrl
 		setText(trackProps.title, title)
 		setText(trackProps.artist, artist)
 		setText(trackProps.album, album)
