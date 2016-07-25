@@ -12,6 +12,9 @@
 
 	function toggleSelector(show) {
 		selector.classList.toggle('view-hidden', !show)
+		if (show) {
+			selectorInput.focus()
+		}
 	}
 
 	var setSiteTitle = (function(){
