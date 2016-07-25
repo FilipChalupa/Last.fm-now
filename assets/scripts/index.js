@@ -14,6 +14,17 @@
 		selector.classList.toggle('view-hidden', !show)
 	}
 
+	var setSiteTitle = (function(){
+		var base = document.title
+		return function(title){
+			if (title) {
+				document.title = title + ' | ' + base
+			} else {
+				document.title = base
+			}
+		}
+	})()
+
 
 	function getUsername() {
 		username = window.location.hash.substr(1)
@@ -21,6 +32,9 @@
 		if (!updateRunning && username) {
 			updateRunning = true
 			update()
+		}
+		if (!username) {
+			setSiteTitle('')
 		}
 		return username
 	}
@@ -131,6 +145,9 @@
 			if (!data.recenttracks || data.recenttracks.track.length == 0) {
 				throw new Error('No tracks')
 			}
+
+			setSiteTitle(data.recenttracks['@attr'].user)
+
 			var track = data.recenttracks.track[0]
 			if (lastTrackId !== track.url) {
 				lastTrackId = track.url
