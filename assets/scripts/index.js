@@ -57,7 +57,7 @@
 		}
 	}
 
-	function show(title, artist, album, cover) {
+	function show(title, artist, album, cover, link) {
 		loading.classList.add('view-done')
 		if (trackPrevious) {
 			trackPrevious.remove()
@@ -78,6 +78,7 @@
 		trackProps = getProps(trackCurrent)
 		trackProps.under.style.backgroundImage = backgroundUrl
 		trackProps.cover.style.backgroundImage = backgroundUrl
+		trackProps.title.href = link
 		setText(trackProps.title, title)
 		setText(trackProps.artist, artist)
 		setText(trackProps.album, album)
@@ -137,7 +138,8 @@
 					track.name,
 					track.artist['#text'],
 					track.album['#text'],
-					getBySize(track.image, 'extralarge', '#text')
+					getBySize(track.image, 'extralarge', '#text'),
+					track.url
 				]
 				show.apply(show, params)
 				showNotification.apply(showNotification, params)
