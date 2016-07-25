@@ -201,28 +201,39 @@ body {
 }
 
 .selector-title {
-	font-size: 30px;
+	font-size: 50px;
 }
 
 .selector-input {
 	display: block;
-	font-family: inherit;
+	font-size: 35px;
+	width: 300px;
 }
 
 .selector-submit {
 	margin-top: 10px;
-	background: none;
-	border: 2px solid;
-	border-radius: 3px;
-	color: inherit;
+	font-size: 20px;
 	cursor: pointer;
 }
 
+.selector-input,
+.selector-submit {
+	font-family: inherit;
+	text-align: center;
+	background: rgba(0,0,0,0.8);
+	border: 2px solid;
+	border-radius: 3px;
+	color: inherit;
+}
+
 .selector-loading {
-	opacity: 0.5;
+	position: relative;
+	z-index: -1;
+	opacity: 0.1;
 }
 
 .selector-about {
 	margin-top: 50px;
 	font-size: 80%;
+	color: inherit;
 }
