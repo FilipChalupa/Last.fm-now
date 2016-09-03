@@ -11,3 +11,7 @@ Shows currently playing track.
 ## Data
 
 - Currently playing track info with cover image from https://last.fm
+
+## Project build
+
+- Developed with [mango-cli](https://github.com/manGoweb/mango-cli)
