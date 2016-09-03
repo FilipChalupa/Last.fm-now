@@ -2,17 +2,18 @@ extends layouts/default
 
 append vars
 	- var page = 'index'
-	- var description = 'Sample project structure used in manGoweb'
+	- var description = 'Shows currently playing track.'
 
 block content
 
-	main.layout(role='main')
+	form(action="screen.html", method="get")
+		div
+			input(type="text", name="u", placeholder="Username")
+		div
+			input#disableNotifications(type="checkbox", name="disableNotifications", value="y")
+			label(for="disableNotifications") Disable notifications
 
-		h1= global.title
-
-		include parts/example
-
-		include parts/samplecontent
+		button Submit
 
 
 

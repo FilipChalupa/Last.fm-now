@@ -1,0 +1,20 @@
+extends layouts/default
+
+append vars
+	- var page = 'screen'
+	- var description = 'Shows currently playing track.'
+
+block content
+
+	include parts/track
+
+	script.
+		initComponents.push({
+			name: 'checker',
+			place: 'body',
+			data: {
+				trackWrap: '#tracks'
+			}
+		})
+
+

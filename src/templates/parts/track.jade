@@ -1,0 +1,16 @@
+section.track-wrap#tracks
+	.track.is-active
+		.track-background
+		.track-in
+			.track-frame
+				.track-cover
+				.track-info
+					a.track-title(href='', target='_blank')
+					.track-artist
+					.track-album
+
+script.
+	initComponents.push({
+		name: 'track',
+		place: '#tracks'
+	})

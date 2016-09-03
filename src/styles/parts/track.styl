@@ -1,0 +1,106 @@
+.track
+	$cover-width = 300px // Natural width of the album image from Last.fm
+
+	absolute top left right bottom
+	transition opacity 0.5s, visibility 0.5s
+	opacity 0
+	visibility hidden
+	z-index 2
+
+	&-wrap
+		absolute top left right bottom
+		overflow hidden
+
+	&-background
+		absolute top left right bottom
+		margin -30px // To hide blur edges
+		filter grayscale(100%) blur(1vw)
+		opacity 0.85
+
+	&-background,
+	&-cover
+		background-position center
+		background-repeat no-repeat
+		background-size cover
+
+	&-in
+		absolute top left right bottom
+		display flex
+		justify-content center
+		align-items center
+		overflow auto
+
+	&-frame
+		position relative
+		margin 15px
+		width 100%
+		max-width $cover-width
+
+	&-cover
+		width 100%
+		max-width $cover-width
+		box-shadow 0 0 30px rgba(0,0,0,0.5)
+
+		&:before
+			display block
+			padding-top 100%
+			content ''
+
+	&-info
+		text-shadow 0 0 30px rgba(0,0,0,0.5)
+
+	&-title
+		display block
+		font-size 2em
+		color inherit
+		text-decoration none
+
+		&:hover,
+		&:active,
+		&:focus
+			text-decoration underline
+
+		&:before
+			absolute top left right bottom
+			content ''
+
+	&-artist
+		font-size 1.5em
+
+	&-album
+		//
+
+
+	@media $break480
+		font-size 1.2em
+
+	@media $break768
+		font-size 1.4em
+
+		&-frame
+			display flex
+			width auto
+			max-width 100%
+
+		&-cover
+			margin-right 15px
+			width $cover-width
+			align-self flex-start
+
+		&-info
+			flex 1
+
+		&-title
+			margin-top -0.448em
+
+	@media $break992
+		font-size 1.5em
+
+	@media $break1200
+		font-size 1.75em
+
+
+	&.is-active
+		opacity 1
+		visibility visible
+		z-index 1
