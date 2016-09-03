@@ -1,11 +1,18 @@
 .track
 	$cover-width = 300px // Natural width of the album image from Last.fm
+	$transition-duration = 0.5s
+
+	@keyframes track-intro
+		0%
+			opacity 0
+		100%
+			opacity 1
 
 	absolute top left right bottom
-	transition opacity 0.5s, visibility 0.5s
+	z-index 1
 	opacity 0
-	visibility hidden
-	z-index 2
+	transition opacity $transition-duration, visibility $transition-duration
+	animation track-intro $transition-duration
 
 	&-wrap
 		absolute top left right bottom
@@ -101,6 +108,5 @@
 
 
 	&.is-active
+		z-index 2
 		opacity 1
-		visibility visible
-		z-index 1
