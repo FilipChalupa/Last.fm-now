@@ -20,18 +20,36 @@
     </script>
   </head>
   <body>
-    <form action="screen.html" method="get" class="selector">
-      <h1 class="selector-title">Last.fm now</h1>
-      <div class="selector-section">
-        <input type="text" name="u" placeholder="Username">
+    <section id="tracks" class="track-wrap">
+      <div class="track is-active">
+        <div class="track-background"></div>
+        <div class="track-in">
+          <div class="track-frame">
+            <div class="track-cover"></div>
+            <div class="track-info"><a href="" target="_blank" class="track-title"></a>
+              <div class="track-artist"></div>
+              <div class="track-album"></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="selector-section">
-        <input id="disableNotifications" type="checkbox" name="disableNotifications" value="y">
-        <label for="disableNotifications">Disable notifications</label>
-      </div>
-      <div class="selector-section"></div>
-      <button>Submit</button><a href="https://github.com/Onset/Last.fm-now" target="_blank" class="selector-note">About Last.fm now</a>
-    </form>
+    </section>
+    <script>
+      initComponents.push({
+      	name: 'track',
+      	place: '#tracks'
+      })
+    </script>
+    <script>
+      initComponents.push({
+      	name: 'checker',
+      	place: 'body',
+      	data: {
+      		trackWrap: '#tracks',
+      		statesWrap: '#states'
+      	}
+      })
+    </script>
     <div id="states" class="states">
       <div class="states-loading">
         <div class="states-in">
