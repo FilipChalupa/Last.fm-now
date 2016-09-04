@@ -20,6 +20,9 @@ module.exports = class Checker extends Component {
 		this.$trackWrap = data.trackWrap && $(data.trackWrap)
 		this.lastTracktimestamp = 0
 		this.lastNowPlayingKey = ''
+		this.$statesWrap = data.statesWrap && $(data.statesWrap)
+
+		this.activeError = false
 
 		this.notificationsEnabled = this.getNotificationsSetting()
 
@@ -110,6 +113,10 @@ module.exports = class Checker extends Component {
 			.done((data) => {
 				if (!(data.recenttracks && data.recenttracks.track && data.recenttracks.track.length)) {
 					console.error('Bad format. Tracks not found.')
+					if (!this.activeLoading) {
+						this.$statesWrap.trigger('setState', ['error', 'Tracks not found'])
+						this.activeError = true
+					}
 					return
 				}
 
@@ -128,6 +135,11 @@ module.exports = class Checker extends Component {
 					} else {
 						return
 					}
+				}
+
+				if (this.activeError) {
+					this.activeError = false
+					this.$statesWrap.trigger('setState', ['error', null])
 				}
 
 				this.triggerUpdate({

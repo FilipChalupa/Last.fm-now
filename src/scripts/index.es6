@@ -7,6 +7,7 @@ var onJQueryAvailable = ($) => {
 	componentsHandler({
 		'checker': require('./components/checker'),
 		'shapes': require('./components/shapes'),
+		'states': require('./components/states'),
 		'track': require('./components/track'),
 	})
 }

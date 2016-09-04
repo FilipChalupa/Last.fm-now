@@ -1,0 +1,102 @@
+.states
+	$icon-loading-size = 100px
+	$icon-error-size = 75px
+	$transition-duration = 0.5s
+
+	@keyframes states-loading
+		0%,
+		100%
+			transform translate(-50%, -50%) scale(0.75)
+		50%
+			transform translate(-50%, -50%) scale(1)
+
+	@keyframes states-error
+		0%,
+		100%
+			transform scale(0.95)
+		50%
+			transform scale(1)
+
+	opacity 0
+	visibility hidden
+	transition opacity $transition-duration, visibility $transition-duration
+	z-index 10
+	text-align center
+	padding 15px
+	background rgba(#000000, 0.75)
+
+	&,
+	&-in
+		absolute top left right bottom
+		display flex
+		justify-content center
+		align-items center
+		flex-direction column
+
+	&-note
+		padding 15px 0
+
+	&-icon
+		margin 0 auto
+
+	&-loading,
+	&-error
+		opacity 0
+		visibility hidden
+		transition opacity $transition-duration, visibility $transition-duration
+
+	&-loading
+		color $c-loading
+
+	&-loading &-icon
+		position relative
+		padding ($icon-loading-size / 2)
+
+		&:before
+			absolute top 50% left 50%
+			border 5px solid
+			border-radius 50%
+			size $icon-loading-size
+			animation states-loading 1.5s ease-in-out infinite
+			content ''
+
+	&-error
+		color $c-error
+
+	&-error &-icon
+		position relative
+		size $icon-error-size
+		animation states-error 1.5s ease-in-out infinite
+
+		&:before,
+		&:after
+			absolute top 50% left 50%
+			transform translate(-50%, -50%) rotate(45deg)
+			display block
+			border-radius ($icon-error-size / 15)
+			size math(2 * $icon-error-size * $icon-error-size, 'sqrt') ($icon-error-size / 15)
+			background currentColor
+			content ''
+
+		&:after
+			transform translate(-50%, -50%) rotate(-45deg)
+
+
+	&.view-loading,
+	&.view-error
+		opacity 1
+		visibility visible
+
+	&.view-loading &
+		&-loading
+			opacity 1
+			visibility visible
+
+	&.view-error &
+		&-error
+			opacity 1
+			visibility visible
+
+	&.view-loading.view-error &
+		&-in
+			position static
