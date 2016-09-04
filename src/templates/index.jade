@@ -6,14 +6,14 @@ append vars
 
 block content
 
-	form(action="screen.html", method="get")
-		div
-			input(type="text", name="u", placeholder="Username")
-		div
-			input#disableNotifications(type="checkbox", name="disableNotifications", value="y")
+	form(action='screen.html', method='get').selector
+		h1.selector-title= global.title
+		.selector-section
+			input(type='text', name='u', placeholder='Username')
+		.selector-section
+			input#disableNotifications(type='checkbox', name='disableNotifications', value='y')
 			label(for="disableNotifications") Disable notifications
-
+		.selector-section
 		button Submit
 
-
-
+		a.selector-note(href='https://github.com/Onset/Last.fm-now', target='_blank') About Last.fm now
