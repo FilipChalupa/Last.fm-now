@@ -25,6 +25,7 @@ module.exports = class Checker extends Component {
 		this.lastTracktimestamp = 0
 		this.lastNowPlayingKey = ''
 		this.$statesWrap = data.statesWrap && $(data.statesWrap)
+		this.$window = $(window)
 
 		this.userInfo = {}
 
@@ -42,7 +43,7 @@ module.exports = class Checker extends Component {
 			this.checkRecentTrack()
 			if (this.$userWrap) {
 				this.getUserInfo(() => {
-					this.$userWrap.trigger('update', this.userInfo)
+					this.showUserInfo()
 				})
 			}
 		}
@@ -54,6 +55,17 @@ module.exports = class Checker extends Component {
 					this.notificationsEnabled = true
 				}
 			})
+		}
+
+		this.$window.on('focus', () => {
+			console.log('show')
+			this.showUserInfo()
+		})
+	}
+
+	showUserInfo() {
+		if (this.userInfo) {
+			this.$userWrap.trigger('update', this.userInfo)
 		}
 	}
 

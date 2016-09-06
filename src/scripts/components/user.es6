@@ -17,6 +17,8 @@ module.exports = class User extends Component {
 		this.$avatar = this.$el.find('.user-avatar')
 		this.$name = this.$el.find('.user-name')
 
+		this.timer = null
+
 		this.$el.on('update', (e, data) => {
 			this.update(data)
 		})
@@ -28,8 +30,12 @@ module.exports = class User extends Component {
 		this.$avatar.css('background-image', 'url("'+data.avatarUrl+'")')
 		this.$name.text(data.name)
 
+		if (this.$el.hasClass('is-active')) {
+			clearTimeout(this.timer)
+		}
+
 		this.show()
-		setTimeout(() => {
+		this.timer = setTimeout(() => {
 			this.hide()
 		}, VISIBILITY_DURATION)
 	}
