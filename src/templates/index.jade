@@ -9,7 +9,7 @@ block content
 	form(action='screen.html', method='get').selector
 		h1.selector-title= global.title
 		.selector-section
-			input(type='text', name='u', placeholder='Username')
+			input(type='text', name='u', placeholder='Username', autofocus)
 		.selector-section
 			input#disableNotifications(type='checkbox', name='disableNotifications', value='y')
 			label(for="disableNotifications") Disable notifications
