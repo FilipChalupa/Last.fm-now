@@ -1,5 +1,6 @@
 var Component = require('./component')
 const queryString = require('query-string')
+const preloadImage = require('../utils/preloadImage')
 
 /**
  * Checker component class
@@ -60,24 +61,12 @@ module.exports = class Checker extends Component {
 		return 'https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user='+this.username+'&api_key=4bf2f3f683673b6f60730f65cf30cb28&format=json'
 	}
 
-	preloadImage(imageUrl, callback) {
-		var img = new Image()
-		img.src = imageUrl
-		if (img.complete) {
-			callback()
-		} else {
-			img.onload = () => {
-				callback()
-			}
-		}
-	}
-
 	triggerUpdate(trackData) {
 		if (!trackData.coverUrl) {
 			trackData.coverUrl = '/images/generic-cover.jpg'
 		}
 
-		this.preloadImage(trackData.coverUrl, () => {
+		preloadImage(trackData.coverUrl, () => {
 			this.updateTile(trackData)
 			this.showNotification(trackData)
 		})
