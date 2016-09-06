@@ -6,10 +6,6 @@ scripts:
   - src/scripts/index.es6
 images:
   - src/images/**/*.{jpg,png}
-sprites:
-  -
-    path: src/images/sources/*.svg
-    name: false
 static:
   - src/fonts/**
   - node_modules/jquery/dist/jquery.min.js
