@@ -1,6 +1,7 @@
 var Component = require('./component')
 const queryString = require('query-string')
 const preloadImage = require('../utils/preloadImage')
+const showNotification = require('../utils/showNotification')
 
 /**
  * Checker component class
@@ -10,7 +11,7 @@ const preloadImage = require('../utils/preloadImage')
  */
 
 const UPDATE_INTERVAL = 2000
-const NOTIFICATION_DISMISS_TIMEOUT = 7000
+const GENERIC_COVER = '/images/generic-cover.jpg'
 
 module.exports = class Checker extends Component {
 
@@ -63,12 +64,12 @@ module.exports = class Checker extends Component {
 
 	triggerUpdate(trackData) {
 		if (!trackData.coverUrl) {
-			trackData.coverUrl = '/images/generic-cover.jpg'
+			trackData.coverUrl = GENERIC_COVER
 		}
 
 		preloadImage(trackData.coverUrl, () => {
 			this.updateTile(trackData)
-			this.showNotification(trackData)
+			this.pushNotification(trackData)
 		})
 	}
 
@@ -80,27 +81,12 @@ module.exports = class Checker extends Component {
 		this.$trackWrap.trigger('update', trackData)
 	}
 
-	showNotification(trackData) {
+	pushNotification(trackData) {
 		if (!this.notificationsEnabled || !document.hidden) {
 			return
 		}
 
-		let notification = new Notification(
-			trackData.title,
-			{
-				body: 'by '+trackData.artist,
-				icon: trackData.coverUrl
-			}
-		)
-
-		notification.addEventListener('click', () => {
-			window.focus()
-			notification.close()
-		})
-
-		setTimeout(() => {
-			notification.close()
-		}, NOTIFICATION_DISMISS_TIMEOUT)
+		showNotification(trackData.title, 'by '+trackData.artist, trackData.coverUrl)
 	}
 
 	getImageUrl(data, size) {
