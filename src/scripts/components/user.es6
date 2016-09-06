@@ -28,7 +28,7 @@ module.exports = class User extends Component {
 
 		// Fill in data
 		this.$avatar.css('background-image', 'url("'+data.avatarUrl+'")')
-		this.$name.text(data.name)
+		this.$name.text(data.name).prop('href', data.link)
 
 		if (this.$el.hasClass('is-active')) {
 			clearTimeout(this.timer)
