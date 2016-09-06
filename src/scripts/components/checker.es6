@@ -104,12 +104,14 @@ module.exports = class Checker extends Component {
 			}
 		)
 
-		// TODO: use es6 features `() => {}`
-		setTimeout(function(notification) {
-			return function() {
-				notification.close()
-			}
-		}(notification), NOTIFICATION_DISMISS_TIMEOUT)
+		notification.addEventListener('click', () => {
+			window.focus()
+			notification.close()
+		})
+
+		setTimeout(() => {
+			notification.close()
+		}, NOTIFICATION_DISMISS_TIMEOUT)
 	}
 
 	getImageUrl(data, size) {
