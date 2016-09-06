@@ -1,7 +1,9 @@
-var Component = require('./component')
+let Component = require('./component')
 const queryString = require('query-string')
 const preloadImage = require('../utils/preloadImage')
 const showNotification = require('../utils/showNotification')
+const getImageUrl = require('../utils/getImageUrl')
+let lfm = new (require('../utils/lfm'))()
 
 /**
  * Checker component class
@@ -18,11 +20,13 @@ module.exports = class Checker extends Component {
 	constructor(el, data) {
 		super(el, data)
 
-		this.username = this.getUsername()
 		this.$trackWrap = data.trackWrap && $(data.trackWrap)
+		this.$userWrap = data.userWrap && $(data.userWrap)
 		this.lastTracktimestamp = 0
 		this.lastNowPlayingKey = ''
 		this.$statesWrap = data.statesWrap && $(data.statesWrap)
+
+		this.userInfo = {}
 
 		this.activeError = false
 
@@ -32,8 +36,15 @@ module.exports = class Checker extends Component {
 	}
 
 	run() {
-		if (this.username) {
+		let username = this.getUsername()
+		if (username) {
+			lfm.setUsername(username)
 			this.checkRecentTrack()
+			if (this.$userWrap) {
+				this.getUserInfo(() => {
+					this.$userWrap.trigger('update', this.userInfo)
+				})
+			}
 		}
 
 		if (this.notificationsEnabled && Notification.permission !== 'granted') {
@@ -46,20 +57,42 @@ module.exports = class Checker extends Component {
 		}
 	}
 
+	setUserInfo(username, name, link, avatarUrl) {
+		return this.userInfo = {
+			username: username,
+			name: name || username,
+			link: link,
+			avatarUrl: avatarUrl
+		}
+	}
+
+	getUserInfo(callback) {
+		$.getJSON(lfm.getUserInfoUrl())
+			.done((data) => {
+				this.setUserInfo(
+					data.user.name,
+					data.user.realname,
+					data.user.url,
+					getImageUrl(data.user.image, 'large')
+				)
+				preloadImage(this.userInfo.avatarUrl, () => {
+					callback()
+				})
+			})
+			.fail(() => {
+				// Try to recover after UPDATE_INTERVAL
+				setTimeout(() => {
+					this.getUserInfo()
+				}, UPDATE_INTERVAL)
+			})
+	}
+
 	getUsername() {
 		return queryString.parse(location.search).u
 	}
 
 	getNotificationsSetting() {
 		return !queryString.parse(location.search).disableNotifications
-	}
-
-	getRecentUrl() {
-		return 'https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user='+this.username+'&limit=2&api_key=4bf2f3f683673b6f60730f65cf30cb28&format=json'
-	}
-
-	getUserInfoUrl() {
-		return 'https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user='+this.username+'&api_key=4bf2f3f683673b6f60730f65cf30cb28&format=json'
 	}
 
 	triggerUpdate(trackData) {
@@ -89,18 +122,8 @@ module.exports = class Checker extends Component {
 		showNotification(trackData.title, 'by '+trackData.artist, trackData.coverUrl)
 	}
 
-	getImageUrl(data, size) {
-		let value = ''
-		for (let i = data.length - 1; i >= 0; i--) {
-			if (!value || data[i].size === size) {
-				value = data[i]['#text']
-			}
-		}
-		return value
-	}
-
 	checkRecentTrack() {
-		$.getJSON(this.getRecentUrl())
+		$.getJSON(lfm.getRecentUrl())
 			.done((data) => {
 				if (!(data.recenttracks && data.recenttracks.track && data.recenttracks.track.length)) {
 					console.error('Bad format. Tracks not found.')
@@ -137,7 +160,7 @@ module.exports = class Checker extends Component {
 					title: track.name,
 					artist: track.artist['#text'],
 					album: track.album['#text'],
-					coverUrl: this.getImageUrl(track.image, 'extralarge'),
+					coverUrl: getImageUrl(track.image, 'extralarge'),
 					link: track.url,
 				})
 			})

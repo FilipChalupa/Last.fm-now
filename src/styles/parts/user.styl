@@ -1,0 +1,65 @@
+.user
+	$transition-duration = 1s
+
+	fixed top left right
+	margin 1em
+	z-index 11
+	display flex
+	align-items center
+	justify-content center
+	transform translateY(-5em)
+	opacity 0
+	visibility hidden
+	transition opacity $transition-duration, visibility $transition-duration, transform $transition-duration
+
+	&-avatar
+		flex-shrink 0
+		size 4em
+		margin-right 0.75em
+		border-radius 50%
+		background-size cover
+		background-position center
+		box-shadow 0 0 30px rgba(0,0,0,0.5)
+		transform rotate(180deg)
+		transition transform $transition-duration
+
+	&-name
+		text-decoration none
+		color inherit
+		font-size 1.5em
+		text-shadow 0 0 30px rgba(0,0,0,0.5)
+		line-height 1.2
+
+		&:hover,
+		&:active,
+		&:focus
+			text-decoration underline
+
+		&:before
+			absolute top left right bottom
+			content ''
+
+
+	&.is-active,
+	&:hover
+		transform translateY(0)
+		opacity 1
+		visibility visible
+
+	&.is-active &,
+	&:hover &
+		&-avatar
+			transform rotate(0deg)
+
+
+	@media $break480
+		font-size 1.1em
+
+	@media $break768
+		font-size 1.3em
+
+	@media $break992
+		font-size 1.5em
+
+	@media $break1200
+		font-size 1.7em

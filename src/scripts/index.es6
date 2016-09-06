@@ -9,6 +9,7 @@ var onJQueryAvailable = ($) => {
 		'shapes': require('./components/shapes'),
 		'states': require('./components/states'),
 		'track': require('./components/track'),
+		'user': require('./components/user'),
 	})
 }
 
