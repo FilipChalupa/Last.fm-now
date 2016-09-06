@@ -36,9 +36,13 @@ module.exports = class Track extends Component {
 		if (this.$lastTrack) {
 			this.$lastTrack.removeClass('is-active')
 
-			this.$lastTrack.on('transitionend', (e) => {
-				$(e.target).remove()
-			})
+			if (document.hidden) {
+				this.$lastTrack.remove()
+			} else {
+				this.$lastTrack.on('transitionend', (e) => {
+					$(e.target).remove()
+				})
+			}
 		}
 		this.$lastTrack = $track
 	}
