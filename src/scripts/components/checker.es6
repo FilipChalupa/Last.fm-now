@@ -24,6 +24,7 @@ module.exports = class Checker extends Component {
 		this.$userWrap = data.userWrap && $(data.userWrap)
 		this.lastTracktimestamp = 0
 		this.lastNowPlayingKey = ''
+		this.lastTrackData = {}
 		this.$statesWrap = data.statesWrap && $(data.statesWrap)
 		this.$window = $(window)
 
@@ -107,6 +108,12 @@ module.exports = class Checker extends Component {
 	}
 
 	triggerUpdate(trackData) {
+		if (this.lastTrackData === trackData) {
+			return
+		}
+		this.lastTrackData = trackData
+
+
 		if (!trackData.coverUrl) {
 			trackData.coverUrl = GENERIC_COVER
 		}
