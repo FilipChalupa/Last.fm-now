@@ -9,7 +9,7 @@ Now playing screen.
 
 ## Data
 
-- Currently playing track info with cover image from https://last.fm
+- Currently playing track info with cover image from http://last.fm
 
 ## Project build
 
