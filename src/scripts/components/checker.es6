@@ -58,7 +58,6 @@ module.exports = class Checker extends Component {
 		}
 
 		this.$window.on('focus', () => {
-			console.log('show')
 			this.showUserInfo()
 		})
 	}
