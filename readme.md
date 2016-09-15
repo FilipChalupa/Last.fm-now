@@ -1,12 +1,11 @@
 # Last.fm now
 
-Shows currently playing track.
+Now playing screen.
 
 ## Preview
 
-- http://lastfmnow.com/#Ofecka_
-- https://onset.github.io/last.fm-now/#Ofecka_
-- https://rawgit.com/Onset/Last.fm-now/master/#Ofecka_
+- http://lastfmnow.com/
+- https://rawgit.com/Onset/Last.fm-now/master/
 
 ## Data
 
