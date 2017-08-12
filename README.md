@@ -4,7 +4,6 @@ Now playing screen.
 
 ## Preview
 
-- https://lastfmnow.com/
 - https://cdn.rawgit.com/Onset/Last.fm-now/gh-pages/index.html
 
 ## Data
