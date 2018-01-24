@@ -10,7 +10,7 @@ static:
   - src/fonts/**
   - node_modules/jquery/dist/jquery.min.js
 templates:
-  - src/templates/*.jade
+  - src/templates/*.pug
 buildstamp:
   - dist/styles/*.css
   - dist/scripts/index.js
