@@ -5,6 +5,7 @@ Now playing screen.
 ## App link
 
 - [onset.github.io/last.fm-now](https://onset.github.io/last.fm-now/)
+![Screenshot](./screenshot.png)
 
 ## Data
 
