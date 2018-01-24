@@ -2,13 +2,13 @@
 
 Now playing screen.
 
-## Preview
+## App link
 
-- https://cdn.rawgit.com/Onset/Last.fm-now/gh-pages/index.html
+- [onset.github.io/last.fm-now](https://onset.github.io/last.fm-now/)
 
 ## Data
 
-- Currently playing track info with cover image from http://last.fm
+- Currently playing track info with cover image from [last.fm](https://www.last.fm/)
 
 ## Project build
 
