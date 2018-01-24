@@ -1,15 +1,15 @@
 # Last.fm now
 
-Now playing screen.
+Now playing screen with live updates from last.fm for any user with a public profile.
 
 ## App link
 
-- [onset.github.io/last.fm-now](https://onset.github.io/last.fm-now/)
+[onset.github.io/last.fm-now](https://onset.github.io/last.fm-now/)
 ![Screenshot](./screenshot.png)
 
 ## Data
 
-- Currently playing track info with cover image from [last.fm](https://www.last.fm/)
+- Currently playing track info with a cover image from [last.fm](https://www.last.fm/)
 
 ## Project build
 
